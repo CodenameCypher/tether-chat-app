@@ -1,6 +1,7 @@
 import { generateToken } from "../lib/utils.js";
 import User from "../models/user.model.js";
 import bcrypt from "bcryptjs";
+import cloudinary from "../lib/cloudinary.js";
 
 export const signup = async (req, res) => {
   const { fullName, email, password } = req.body;
@@ -66,7 +67,7 @@ export const login = async (req, res) => {
       }
     }
   } catch (e) {
-    console.log(`Error in singup controller ${e.message}`);
+    console.log(`Error in login controller ${e.message}`);
     return res.status(500).json({ message: "Internal server error." });
   }
 };
@@ -78,12 +79,45 @@ export const logout = (req, res) => {
     });
     return res.status(200).json({ message: `Logout success.` });
   } catch (e) {
-    console.log(`Error in singup controller ${e.message}`);
+    console.log(`Error in logout controller ${e.message}`);
     return res.status(500).json({ message: "Internal server error." });
   }
 };
 
 export const updateProfile = async (req, res) => {
   try {
-  } catch (e) {}
+    const { profilePic } = req.body;
+
+    const userID = req.user._id; // from middleware
+
+    if (!profilePic) {
+      return res.status(400).json({ message: "Profile picture is required." });
+    }
+    // upload picture
+    const uploadResponse = await cloudinary.uploader.upload(profilePic);
+
+    const updatedUser = User.findByIdAndUpdate(
+      { _id: userID },
+      { profilePic: uploadResponse.secure_url },
+      { new: true }
+    );
+
+    return res
+      .status(200)
+      .json(
+        `User ${userID} was updated with profile picture: ${uploadResponse.secure_url}`
+      );
+  } catch (e) {
+    console.log(`Error in update controller ${e.message}`);
+    return res.status(500).json({ message: "Internal server error." });
+  }
+};
+
+export const checkAuth = (req, res) => {
+  try {
+    return res.status(200).json({ message: "User is authenticated." });
+  } catch (e) {
+    console.log(`Error in checkAuth controller ${e.message}`);
+    return res.status(500).json({ message: "Internal server error." });
+  }
 };
