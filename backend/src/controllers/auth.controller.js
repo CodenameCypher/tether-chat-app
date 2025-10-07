@@ -61,9 +61,7 @@ export const login = async (req, res) => {
       else {
         // generate token
         await generateToken(user._id, res);
-        return res
-          .status(200)
-          .json({ message: `Login success for user: ${user._id}` });
+        return res.status(200).json(user);
       }
     }
   } catch (e) {

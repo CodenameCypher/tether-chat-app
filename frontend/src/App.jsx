@@ -8,7 +8,8 @@ import SettingsPage from "./pages/SettingsPage";
 import ProfilePage from "./pages/ProfilePage";
 import { axiosInstance } from "./lib/axios";
 import { useAuthStore } from "./store/useAuthStore";
-import { Radar } from "lucide-react";
+import { Radar, User } from "lucide-react";
+import { Toaster } from "react-hot-toast";
 
 const App = () => {
   const { authUser, checkAuth, isCheckingAuth } = useAuthStore();
@@ -50,6 +51,8 @@ const App = () => {
           element={authUser ? <ProfilePage /> : <Navigate to={"/login"} />}
         ></Route>
       </Routes>
+
+      <Toaster position="bottom-right" reverseOrder={false} />
     </div>
   );
 };
