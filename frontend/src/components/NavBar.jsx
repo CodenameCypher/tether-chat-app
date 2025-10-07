@@ -1,6 +1,9 @@
 import React from "react";
+import { useAuthStore } from "../store/useAuthStore";
 
 const NavBar = () => {
+  const { authUser } = useAuthStore();
+
   return (
     <div>
       <div className="navbar bg-base-100 shadow-sm">
