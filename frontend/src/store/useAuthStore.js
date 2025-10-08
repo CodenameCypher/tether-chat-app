@@ -14,7 +14,6 @@ export const useAuthStore = create((set) => ({
       const response = await axiosInstance.get("/auth/check");
       set({ authUser: response.data });
     } catch (error) {
-      console.log("Error in checking auth in useAuthStore: ", error);
       set({ authUser: null });
     } finally {
       set({ isCheckingAuth: false });
@@ -28,7 +27,7 @@ export const useAuthStore = create((set) => ({
       toast.success("Welcome to Tether!");
     } catch (error) {
       set({ authUser: null });
-      console.log(error);
+      set({ isSigningUp: false });
       toast.error("Failed, please try again.");
     } finally {
       set({ isSigningUp: false });
@@ -52,7 +51,24 @@ export const useAuthStore = create((set) => ({
       set({ authUser: response.data });
       toast.success(`Welcome to Tether, ${response.data.fullName}`);
     } catch (error) {
+      set({ isLoggingIn: false });
+      console.log(error);
+      toast.error(error.response.data.message);
+    } finally {
+      set({ isLoggingIn: false });
+    }
+  },
+
+  updateProfile: async (data) => {
+    set({ isUpdatingProfile: true });
+    try {
+      const response = await axiosInstance.put("/auth/update-profile", data);
+      set({ authUser: response.data });
+      toast.success("Profile picture updated.");
+    } catch (error) {
       toast.error("Something went wrong.");
+    } finally {
+      set({ isUpdatingProfile: false });
     }
   },
 }));

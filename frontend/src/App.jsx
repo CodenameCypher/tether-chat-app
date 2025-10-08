@@ -6,13 +6,14 @@ import SignUpPage from "./pages/SignUpPage";
 import LoginPage from "./pages/LoginPage";
 import SettingsPage from "./pages/SettingsPage";
 import ProfilePage from "./pages/ProfilePage";
-import { axiosInstance } from "./lib/axios";
 import { useAuthStore } from "./store/useAuthStore";
+import { useThemeStore } from "./store/useThemeStore";
 import { Radar, User } from "lucide-react";
 import { Toaster } from "react-hot-toast";
 
 const App = () => {
   const { authUser, checkAuth, isCheckingAuth } = useAuthStore();
+  const { selectedTheme } = useThemeStore();
 
   useEffect(() => {
     checkAuth();
@@ -29,7 +30,7 @@ const App = () => {
   }
 
   return (
-    <div>
+    <div data-theme={selectedTheme}>
       <NavBar />
 
       <Routes>
