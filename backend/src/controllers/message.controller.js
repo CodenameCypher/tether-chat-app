@@ -9,9 +9,7 @@ export const getUserForSidebar = async (req, res) => {
       _id: { $ne: loggedInUserID },
     }).select("-password");
 
-    return res
-      .status(200)
-      .json({ message: `Total users found: ${filteredUsers.length}` });
+    return res.status(200).json(filteredUsers);
   } catch (e) {
     return res
       .status(400)
