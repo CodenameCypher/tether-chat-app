@@ -22,14 +22,14 @@ It supports authentication, media uploads, user profiles, persistent message sto
 - **React (Vite)** — fast, modular frontend
 - **Axios** — API and socket communication
 - **Zustand-like stores** — custom global state management (`useAuthStore`, `useChatStore`, `useThemeStore`)
-- **Plain CSS** — simple global styling (`index.css`)
+- **Tailwind CSS + DaisyUI** — elegant, component-ready styling system  
 - **Vite Dev Server** — blazing-fast development setup
 
 ### 🛠️ Dev & Tooling
 - npm, ESLint, Git  
-- MongoDB Atlas (recommended)  
+- MongoDB Cloud  
 - Cloudinary (media hosting)  
-- Deployed easily on Render / Vercel / Heroku
+- Deployed on [Render](https://tether-f9zx.onrender.com/)
 
 ---
 
@@ -115,10 +115,10 @@ tether-chat-app/
 ### 🖥️ Frontend UI
 - Responsive and modular React component design
 - Dynamic sidebar and chat layout
-- Custom global state management using **Zustand-style hooks**
+- Custom global state management using **Zustand hooks**
 
 ### 🌗 Theme & Personalization
-- Customizable theme toggles with `useThemeStore`
+- Customizable theme toggles with `useThemeStore` and `DaisyUI`
 - Simple theme constants defined in `/frontend/constants/themes.js`
 
 ---
@@ -126,6 +126,7 @@ tether-chat-app/
 ## ⚙️ Environment Variables
 
 ### 🔐 Backend (`backend/.env`)
+```
 PORT=5001
 MONGO_URI=your_mongodb_connection
 JWT_SECRET=your_jwt_secret
@@ -133,9 +134,12 @@ CLOUDINARY_CLOUD_NAME=xxxx
 CLOUDINARY_API_KEY=xxxx
 CLOUDINARY_API_SECRET=xxxx
 NODE_ENV=development
+```
 
 ### 💡 Frontend (`frontend/.env`)
+```
 VITE_API_URL=http://localhost:5001
+```
 
 ---
 
@@ -175,11 +179,11 @@ VITE_API_URL=http://localhost:5001
 | **Database (MongoDB)** | Persists all messages & users |
 | **Sockets** | Manages real-time communication and online status tracking |
 
-> The backend serves both the API and the built React app in production for a unified deployment experience.
+> The backend serves both the API and the built React app in [production](https://tether-f9zx.onrender.com/) for a unified deployment experience.
 
 ---
 
-## 📅 Roadmap / Future Enhancements
+## 📅 Future Enhancements
 
 - 🔄 Group chats & typing indicators  
 - 💬 Message delivery receipts  
@@ -197,10 +201,4 @@ Pull requests are welcome!
 If you’d like to suggest a feature or fix a bug:
 1. Fork this repo  
 2. Create a feature branch  
-3. Submit a PR with a clear description  
-
----
-
-## 🧾 License
-
-MIT License © 2025 [CodenameCypher](https://github.com/CodenameCypher)
+3. Submit a PR with a clear description
