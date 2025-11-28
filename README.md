@@ -210,3 +210,13 @@ If you’d like to suggest a feature or fix a bug:
 1. Fork this repo  
 2. Create a feature branch  
 3. Submit a PR with a clear description
+
+---
+
+---
+
+## 🖼️ Preview & Demo
+
+> - ![Home page](./assets/1.png)
+> - ![Chat UI Screenshot 1](./assets/2.png)
+> - ![Chat UI Screenshot 2](./assets/3.png)
