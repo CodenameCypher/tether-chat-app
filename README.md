@@ -34,7 +34,7 @@ It supports authentication, media uploads, user profiles, persistent message sto
 ---
 
 ## 📂 Repository Structure
-
+```
 tether-chat-app/
 │
 ├── backend/
@@ -90,7 +90,7 @@ tether-chat-app/
 ├── package.json
 ├── README.md
 └── .gitignore
-
+```
 ---
 
 ## 🔑 Key Features
