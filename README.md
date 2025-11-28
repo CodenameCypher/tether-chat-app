@@ -146,25 +146,33 @@ VITE_API_URL=http://localhost:5001
 ## 🧭 Getting Started (Development)
 
 1. **Clone the repository**
+   ```
    git clone https://github.com/CodenameCypher/tether-chat-app.git
    cd tether-chat-app
+   ```
 
-2. **Install dependencies**
+3. **Install dependencies**
+   ```
    cd backend && npm install
    cd ../frontend && npm install
+   ```
 
-3. **Set up your `.env` files** in both frontend and backend as shown above.
+5. **Set up your `.env` files** in both frontend and backend as shown above.
 
-4. **Run servers concurrently**
+6. **Run servers concurrently**
    # Backend (Terminal 1)
+   ```
    cd backend
    npm run dev
+   ```
 
    # Frontend (Terminal 2)
+   ```
    cd frontend
    npm run dev
+   ```
 
-5. **Visit**
+8. **Visit**
    http://localhost:5173
    Start chatting! 🎉
 
