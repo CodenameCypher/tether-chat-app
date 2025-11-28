@@ -1,7 +1,9 @@
+![Tether Banner](./assets/banner.png)
 # 💬 Tether — Real-Time Chat Application
 
 Tether is a **full-stack real-time chat app** built with the MERN stack and **Socket.IO** for instant messaging.  
 It supports authentication, media uploads, user profiles, persistent message storage, and a clean, responsive UI built with React (Vite).  
+[🌐 Live Demo](https://tether-f9zx.onrender.com/)
 
 > ⚡️ Chat instantly. Upload seamlessly. Stay connected in real-time.
 
@@ -217,6 +219,6 @@ If you’d like to suggest a feature or fix a bug:
 
 ## 🖼️ Preview & Demo
 
-> - ![Home page](./assets/1.png)
-> - ![Chat UI Screenshot 1](./assets/2.png)
-> - ![Chat UI Screenshot 2](./assets/3.png)
+![Home page](./assets/1.png)
+![Chat UI Screenshot 1](./assets/2.png)
+![Chat UI Screenshot 2](./assets/3.png)
