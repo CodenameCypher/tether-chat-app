@@ -1,5 +1,5 @@
 import { useChatStore } from "../store/useChatStore.js";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import ChatHeader from "./ChatHeader.jsx";
 import MessageInput from "./MessageInput.jsx";
 import { MessageSquareText } from "lucide-react";
@@ -7,14 +7,38 @@ import { useAuthStore } from "../store/useAuthStore.js";
 import { timeAgo } from "../lib/utils.js";
 
 const ChatContainer = () => {
-  const { messages, getMessages, isMessagesLoading, selectedUser } =
-    useChatStore();
+  const {
+    messages,
+    getMessages,
+    isMessagesLoading,
+    selectedUser,
+    subscribeToMessages,
+    unsubscribeFromMessages,
+  } = useChatStore();
 
   const { authUser } = useAuthStore();
 
   useEffect(() => {
     getMessages(selectedUser._id);
-  }, [selectedUser._id]);
+
+    subscribeToMessages();
+
+    return () => {
+      unsubscribeFromMessages();
+    };
+  }, [
+    selectedUser._id,
+    getMessages,
+    subscribeToMessages,
+    unsubscribeFromMessages,
+  ]);
+
+  useEffect(() => {
+    if (messageEndRef.current && messages)
+      messageEndRef.current.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
+
+  const messageEndRef = useRef(null);
 
   if (isMessagesLoading)
     return (
@@ -42,6 +66,7 @@ const ChatContainer = () => {
             className={`chat ${
               m.senderID === authUser._id ? "chat-end" : "chat-start"
             }`}
+            ref={messageEndRef}
           >
             <div className="chat-image avatar">
               <div className="w-10 rounded-full">
@@ -64,7 +89,11 @@ const ChatContainer = () => {
               </time>
             </div>
 
-            <div className="chat-bubble flex">
+            <div
+              className={`chat-bubble ${
+                authUser._id === m.senderID ? "chat-bubble-neutral" : ""
+              } flex`}
+            >
               {m.image && (
                 <img
                   src={m.image}
